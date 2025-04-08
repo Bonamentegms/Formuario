@@ -1,27 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Pedido Restaurante</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2em;
+      max-width: 400px;
+      margin: auto;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.3em;
+      margin-bottom: 1em;
+    }
+  </style>
 </head>
 <body>
   <h2>Registrar Pedido</h2>
+
   <form action="https://script.google.com/macros/s/AKfycbza7k05RSU4jw1Z_PGSEn4AQbd8UEBvYW9KC8PaLrgCCOh-QRYlmBp0rnfm5uoi529g/exec" method="POST">
-    <label>Nombre:</label><br>
-    <input type="text" name="nombre" required><br><br>
+    
+    <label for="nombre">Nombre:</label>
+    <input type="text" name="nombre" id="nombre" required>
 
-    <label>Cédula:</label><br>
-    <input type="text" name="cedula" required><br><br>
+    <label for="cedula">Cédula:</label>
+    <input type="text" name="cedula" id="cedula" required>
 
-    <label>Tipo de Producto:</label><br>
-    <select name="producto" required>
+    <label for="producto">Tipo de Producto:</label>
+    <select name="producto" id="producto" required>
+      <option value="">-- Selecciona --</option>
       <option value="Almuerzo especial empleado">Almuerzo especial empleado</option>
       <option value="Bandeja especial empleado">Bandeja especial empleado</option>
       <option value="Almuerzo empleado">Almuerzo empleado</option>
       <option value="Bandeja empleado">Bandeja empleado</option>
       <option value="Desayuno empleado">Desayuno empleado</option>
       <option value="Cena empleado">Cena empleado</option>
-    </select><br><br>
+    </select>
 
     <button type="submit">Enviar Pedido</button>
   </form>

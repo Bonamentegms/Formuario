@@ -17,4 +17,46 @@
     <select id="producto" name="producto" required>
       <option value="Almuerzo especial empleado">Almuerzo especial empleado</option>
       <option value="Bandeja especial empleado">Bandeja especial empleado</option>
-      <option value="Almuerzo empleado">Al
+      <option value="Almuerzo empleado">Almuerzo empleado</option>
+      <option value="Bandeja empleado">Bandeja empleado</option>
+      <option value="Desayuno empleado">Desayuno empleado</option>
+      <option value="Cena empleado">Cena empleado</option>
+    </select><br><br>
+
+    <button type="submit">Enviar Pedido</button>
+  </form>
+
+  <script>
+    document.getElementById("pedidoForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById("nombre").value;
+      const cedula = document.getElementById("cedula").value;
+      const producto = document.getElementById("producto").value;
+
+      const formData = new FormData();
+      formData.append("nombre", nombre);
+      formData.append("cedula", cedula);
+      formData.append("producto", producto);
+
+      fetch("https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec", {
+        method: "POST",
+        body: formData
+      })
+      .then(response => {
+        if (response.ok) {
+          // Redirige a la página que muestra el código QR
+          const qrURL = "https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec?qr=" + encodeURIComponent(cedula);
+          window.location.href = qrURL;
+        } else {
+          alert("Error al enviar el formulario. Intenta de nuevo.");
+        }
+      })
+      .catch(error => {
+        console.error("Error:", error);
+        alert("Ocurrió un error. Revisa la consola para más detalles.");
+      });
+    });
+  </script>
+</body>
+</html>

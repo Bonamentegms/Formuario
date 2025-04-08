@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Pedido Restaurante</title>
+</head>
+<body>
+  <h2>Registrar Pedido</h2>
+  <form action="https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec" method="POST">
+    <label>Nombre:</label><br>
+    <input type="text" name="nombre" required><br><br>
+
+    <label>Cédula:</label><br>
+    <input type="text" name="cedula" required><br><br>
+
+    <label>Tipo de Producto:</label><br>
+    <select name="producto" required>
+      <option value="Almuerzo Especial">Almuerzo Especial</option>
+      <option value="Bandeja Especial">Bandeja Especial</option>
+      <option value="Almuerzo">Almuerzo</option>
+      <option value="Bandeja">Bandeja</option>
+      <option value="Desayuno">Desayuno</option>
+      <option value="Cena">Cena</option>
+    </select><br><br>
+
+    <button type="submit">Enviar Pedido</button>
+  </form>
+</body>
+</html>

@@ -1,44 +1,29 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Formulario de Pedido</title>
+  <title>Pedido Restaurante</title>
 </head>
 <body>
   <h2>Registrar Pedido</h2>
-  <form id="formPedido">
-    <label>Nombre:<br><input type="text" id="nombre" required></label><br><br>
-    <label>Cédula:<br><input type="text" id="cedula" required></label><br><br>
-    <label>Tipo de Producto:<br>
-      <select id="producto" required>
-        <option value="">-- Selecciona --</option>
-        <option>Almuerzo especial empleado</option>
-        <option>Bandeja especial empleado</option>
-        <option>Almuerzo empleado</option>
-        <option>Bandeja empleado</option>
-        <option>Desayuno empleado</option>
-        <option>Cena empleado</option>
-      </select>
-    </label><br><br>
+  <form action="https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec" method="POST">
+    <label>Nombre:</label><br>
+    <input type="text" name="nombre" required><br><br>
+
+    <label>Cédula:</label><br>
+    <input type="text" name="cedula" required><br><br>
+
+    <label>Tipo de Producto:</label><br>
+    <select name="producto" required>
+      <option value="Almuerzo especial empleado">Almuerzo especial empleado</option>
+      <option value="Bandeja especial empleado">Bandeja especial empleado</option>
+      <option value="Almuerzo empleado">Almuerzo empleado</option>
+      <option value="Bandeja empleado">Bandeja empleado</option>
+      <option value="Desayuno empleado">Desayuno empleado</option>
+      <option value="Cena empleado">Cena empleado</option>
+    </select><br><br>
+
     <button type="submit">Enviar Pedido</button>
   </form>
-
-  <script>
-    document.getElementById('formPedido').addEventListener('submit', function (e) {
-      e.preventDefault();
-      const nombre = document.getElementById('nombre').value.trim();
-      const cedula = document.getElementById('cedula').value.trim();
-      const producto = document.getElementById('producto').value.trim();
-
-      if (!nombre || !cedula || !producto) {
-        alert("Por favor completa todos los campos.");
-        return;
-      }
-
-      const scriptURL = "https://script.google.com/macros/s/AKfycby0z4h8ww-Wn91B54qB97M2VRSh_lMzeqrUG3IOKTo9c8Ng7h4zf8EnSL-I2JOp4S42/exec";
-      const url = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&cedula=${encodeURIComponent(cedula)}&producto=${encodeURIComponent(producto)}`;
-      window.location.href = url;
-    });
-  </script>
 </body>
 </html>

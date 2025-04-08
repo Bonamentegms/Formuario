@@ -6,7 +6,7 @@
 </head>
 <body>
   <h2>Registrar Pedido</h2>
-  <form action="https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec" method="POST">
+  <form id="pedidoForm">
     <label>Nombre:</label><br>
     <input type="text" name="nombre" required><br><br>
 
@@ -25,5 +25,21 @@
 
     <button type="submit">Enviar Pedido</button>
   </form>
+
+  <script>
+    document.getElementById("pedidoForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const cedula = data.get("cedula");
+      fetch("https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec", {
+        method: "POST",
+        body: data
+      }).then(() => {
+        // Redirigir al QR generado
+        window.location.href = "https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec?qr=" + encodeURIComponent(cedula);
+      });
+    });
+  </script>
 </body>
 </html>

@@ -8,38 +8,13 @@
   <h2>Registrar Pedido</h2>
   <form id="pedidoForm">
     <label>Nombre:</label><br>
-    <input type="text" name="nombre" required><br><br>
+    <input type="text" id="nombre" name="nombre" required><br><br>
 
     <label>Cédula:</label><br>
-    <input type="text" name="cedula" required><br><br>
+    <input type="text" id="cedula" name="cedula" required><br><br>
 
     <label>Tipo de Producto:</label><br>
-    <select name="producto" required>
+    <select id="producto" name="producto" required>
       <option value="Almuerzo especial empleado">Almuerzo especial empleado</option>
       <option value="Bandeja especial empleado">Bandeja especial empleado</option>
-      <option value="Almuerzo empleado">Almuerzo empleado</option>
-      <option value="Bandeja empleado">Bandeja empleado</option>
-      <option value="Desayuno empleado">Desayuno empleado</option>
-      <option value="Cena empleado">Cena empleado</option>
-    </select><br><br>
-
-    <button type="submit">Enviar Pedido</button>
-  </form>
-
-  <script>
-    document.getElementById("pedidoForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
-      const cedula = data.get("cedula");
-      fetch("https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec", {
-        method: "POST",
-        body: data
-      }).then(() => {
-        // Redirigir al QR generado
-        window.location.href = "https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec?qr=" + encodeURIComponent(cedula);
-      });
-    });
-  </script>
-</body>
-</html>
+      <option value="Almuerzo empleado">Al

@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pedido Restaurante</title>
+  <title>Registrar Pedido</title>
 </head>
 <body>
   <h2>Registrar Pedido</h2>
+
   <form id="pedidoForm">
-    <label>Nombre:</label><br>
+    <label for="nombre">Nombre:</label><br>
     <input type="text" id="nombre" name="nombre" required><br><br>
 
-    <label>Cédula:</label><br>
+    <label for="cedula">Cédula:</label><br>
     <input type="text" id="cedula" name="cedula" required><br><br>
 
-    <label>Tipo de Producto:</label><br>
+    <label for="producto">Tipo de Producto:</label><br>
     <select id="producto" name="producto" required>
       <option value="Almuerzo especial empleado">Almuerzo especial empleado</option>
       <option value="Bandeja especial empleado">Bandeja especial empleado</option>
@@ -30,8 +31,8 @@
     document.getElementById("pedidoForm").addEventListener("submit", function(e) {
       e.preventDefault();
 
-      const nombre = document.getElementById("nombre").value;
-      const cedula = document.getElementById("cedula").value;
+      const nombre = document.getElementById("nombre").value.trim();
+      const cedula = document.getElementById("cedula").value.trim();
       const producto = document.getElementById("producto").value;
 
       const formData = new FormData();
@@ -45,16 +46,16 @@
       })
       .then(response => {
         if (response.ok) {
-          // Redirige a la página que muestra el código QR
+          // Redirige al QR generado con la cédula
           const qrURL = "https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec?qr=" + encodeURIComponent(cedula);
           window.location.href = qrURL;
         } else {
-          alert("Error al enviar el formulario. Intenta de nuevo.");
+          alert("Error al enviar el pedido.");
         }
       })
       .catch(error => {
         console.error("Error:", error);
-        alert("Ocurrió un error. Revisa la consola para más detalles.");
+        alert("Ocurrió un error al procesar el pedido.");
       });
     });
   </script>

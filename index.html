@@ -1,56 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registrar Pedido</title>
+  <title>Pedido de Comida</title>
 </head>
 <body>
   <h2>Registrar Pedido</h2>
-  <form id="pedidoForm">
-    <label>Nombre:</label><br>
-    <input type="text" name="nombre" required><br><br>
-
-    <label>Cédula:</label><br>
-    <input type="text" name="cedula" required><br><br>
-
-    <label>Tipo de Producto:</label><br>
-    <select name="producto" required>
-      <option value="Almuerzo especial empleado">Almuerzo especial empleado</option>
-      <option value="Bandeja especial empleado">Bandeja especial empleado</option>
-      <option value="Almuerzo empleado">Almuerzo empleado</option>
-      <option value="Bandeja empleado">Bandeja empleado</option>
-      <option value="Desayuno empleado">Desayuno empleado</option>
-      <option value="Cena empleado">Cena empleado</option>
-    </select><br><br>
-
+  <form id="formPedido">
+    <label>Nombre:<br><input type="text" id="nombre" required></label><br><br>
+    <label>Cédula:<br><input type="text" id="cedula" required></label><br><br>
+    <label>Tipo de Producto:<br>
+      <select id="producto" required>
+        <option value="">-- Selecciona --</option>
+        <option>Almuerzo especial empleado</option>
+        <option>Bandeja especial empleado</option>
+        <option>Almuerzo empleado</option>
+        <option>Bandeja empleado</option>
+        <option>Desayuno empleado</option>
+        <option>Cena empleado</option>
+      </select>
+    </label><br><br>
     <button type="submit">Enviar Pedido</button>
   </form>
 
   <script>
-    const form = document.getElementById("pedidoForm");
-
-    form.addEventListener("submit", function(e) {
+    document.getElementById('formPedido').addEventListener('submit', function (e) {
       e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const cedula = document.getElementById('cedula').value.trim();
+      const producto = document.getElementById('producto').value.trim();
 
-      const formData = new FormData(form);
-      const nombre = formData.get("nombre");
-      const cedula = formData.get("cedula");
-      const producto = formData.get("producto");
+      if (!nombre || !cedula || !producto) {
+        alert("Por favor completa todos los campos.");
+        return;
+      }
 
-      // Construye la URL para el Web App de Apps Script
-      const url = "https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec";
-
-      // Enviar los datos por GET (puedes cambiar a POST si actualizas el script)
-      fetch(`${url}?nombre=${encodeURIComponent(nombre)}&cedula=${encodeURIComponent(cedula)}&producto=${encodeURIComponent(producto)}`)
-        .then(response => {
-          if (!response.ok) throw new Error("Error en el envío.");
-          // Redirigir a la vista del QR con ?qr=cedula
-          window.location.href = `${url}?qr=${encodeURIComponent(cedula)}`;
-        })
-        .catch(error => {
-          alert("Ocurrió un error. Revisa la consola para más detalles.");
-          console.error(error);
-        });
+      // Redirige directamente al Apps Script que genera el QR
+      const scriptURL = "https://script.google.com/macros/s/AKfycbxoxb7yRQMsaZvjtW_PKCXpzucyp2GWVaTALc69vGZj8w7-d0oxjFNNXYtHlkqq90cK/exec";
+      const url = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&cedula=${encodeURIComponent(cedula)}&producto=${encodeURIComponent(producto)}`;
+      window.location.href = url;
     });
   </script>
 </body>

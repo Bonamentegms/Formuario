@@ -35,4 +35,10 @@
         return;
       }
 
-      const scriptURL = "URL_DE_TU_DEPLOY_WEBAPP";
+      const scriptURL = "https://script.google.com/macros/s/AKfycbxnfUxJepOvIh_OW7y3rHqAoaSccXx69fyvaHH8vKf1-shPi91qlZ0p0IkZ5Xg8OMCs/exec";
+      const url = `${scriptURL}?nombre=${encodeURIComponent(nombre)}&cedula=${encodeURIComponent(cedula)}&producto=${encodeURIComponent(producto)}`;
+      window.location.href = url;
+    });
+  </script>
+</body>
+</html>
